@@ -1,6 +1,3 @@
-import type { Db } from 'mongodb'
-import { MongoClient } from 'mongodb'
-
 const {
   ACCESS_TOKEN_EXPIRATION,
   AI_SERVER_URL,

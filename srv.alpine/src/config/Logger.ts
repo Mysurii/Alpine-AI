@@ -1,7 +1,11 @@
 import chalk from 'chalk'
 
 export default class Logger {
-  public static log = (args: unknown) => this.info(args)
+  public static log = (args: unknown) =>
+    console.log(
+      chalk.white(`[${new Date().toLocaleString()}] [INFO] `),
+      typeof args === 'string' ? chalk.whiteBright(args) : args,
+    )
 
   public static info = (args: unknown) =>
     console.log(

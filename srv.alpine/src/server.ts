@@ -1,6 +1,6 @@
+import 'dotenv/config'
 import type { Server } from 'http'
 import { bootServer, databaseClient } from './app'
-import 'dotenv/config'
 import Logger from './config/Logger'
 
 let server: Server

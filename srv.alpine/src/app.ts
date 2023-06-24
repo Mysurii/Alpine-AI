@@ -8,7 +8,8 @@ import chalk from 'chalk'
 
 import { envVariables } from './config/config'
 import { connectDb } from './config/db'
-import Logger from 'config/Logger'
+import Logger from './config/Logger'
+import { rateLimiter } from 'middlewares/ratelimiter.middleware'
 
 export let database: Db
 export let databaseClient: MongoClient
@@ -17,10 +18,10 @@ export function bootServer(): Promise<Server> {
   return new Promise((resolve, reject) => {
     try {
       Logger.info('Booting up the server')
-      Logger.log(' Trying to connect to the database')
+      Logger.log('> Trying to connect to the database')
       connectDb()
         .then(({ db, client }) => {
-          Logger.log(' Connected to the database!')
+          Logger.log('> Connected to the database!')
           database = db
           databaseClient = client
 
@@ -31,6 +32,9 @@ export function bootServer(): Promise<Server> {
 
           // is a set of middlewares that sets response headers to help prevent some well-known web vulnerabilities
           app.use(helmet())
+
+          // set the rate limit middleware, if the requester has reached the rate limit, the request will end here and won't go further through the request chain.
+          app.use(rateLimiter)
 
           // first middleware in the request chain is the urencoded and parses form data (application/x-www-form-urlencoded)
           app.use(express.urlencoded({ extended: false }))
