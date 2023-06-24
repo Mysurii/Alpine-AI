@@ -14,6 +14,7 @@ import { connectDb } from './config/db'
 import Logger from './config/Logger'
 import { rateLimiter } from './middlewares/ratelimiter.middleware'
 import { routes } from './routes/'
+import authorizationMiddleware from './middlewares/auth.middleware'
 
 export let database: Db
 export let databaseClient: MongoClient = new MongoClient(envVariables.DATABASE.url)
@@ -54,7 +55,10 @@ export function bootServer(): Promise<Server> {
           // second middleware in the request chain is the JSON parser middleware. Parsed request body if the application/json Content-Type is set
           app.use(express.json())
 
-          app.use(routes)
+          app.use(authorizationMiddleware)
+
+          // add the routes
+          routes(app)
 
           const server = app.listen(envVariables.PORT, () => {
             console.log(`\nServer is listening on port ${chalk.green(envVariables.PORT)}`)
