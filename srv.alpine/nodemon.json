@@ -1,0 +1,10 @@
+{
+  "restartable": "rs",
+  "watch": ["src/**/*.ts"],
+  "ext": "js,json,ts",
+  "ignore": ["src/**/*.spec.ts"],
+  "exec": "ts-node ./src/server.ts",
+  "env": {
+    "NODE_ENV": "development"
+  }
+}
