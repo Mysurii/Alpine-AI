@@ -15,6 +15,7 @@ import Logger from './config/Logger'
 import { rateLimiter } from './middlewares/ratelimiter.middleware'
 import { routes } from './routes/'
 import authorizationMiddleware from './middlewares/auth.middleware'
+import { errorHandler } from './middlewares/general'
 
 export let database: Db
 export let databaseClient: MongoClient = new MongoClient(envVariables.DATABASE.url)
@@ -59,6 +60,8 @@ export function bootServer(): Promise<Server> {
 
           // add the routes
           routes(app)
+
+          app.use(errorHandler)
 
           const server = app.listen(envVariables.PORT, () => {
             console.log(`\nServer is listening on port ${chalk.green(envVariables.PORT)}`)
