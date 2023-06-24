@@ -9,7 +9,7 @@ import chalk from 'chalk'
 import { envVariables } from './config/config'
 import { connectDb } from './config/db'
 import Logger from './config/Logger'
-import { rateLimiter } from 'middlewares/ratelimiter.middleware'
+import { rateLimiter } from './middlewares/ratelimiter.middleware'
 
 export let database: Db
 export let databaseClient: MongoClient
