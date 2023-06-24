@@ -1,5 +1,3 @@
-import { Request, Response } from 'express'
-
 export type MessageResponse = { message: string }
 
 export type HTTP_STATE = {

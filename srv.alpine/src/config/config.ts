@@ -38,7 +38,7 @@ type EnvVariables = {
   }
   ENCRYPTION_KEYS: { public: string; private: string }
   PORT: number
-  TOKENS: { secret: string; atExpiration: number; RtExpiration: number }
+  TOKENS: { secret: string; atExpiration: number; rtExpiration: number }
 }
 
 export const envVariables: EnvVariables = {
@@ -55,6 +55,6 @@ export const envVariables: EnvVariables = {
   TOKENS: {
     secret: JWT_SECRET,
     atExpiration: parseInt(ACCESS_TOKEN_EXPIRATION),
-    RtExpiration: parseInt(REFRESH_TOKEN_EXPIRATION),
+    rtExpiration: parseInt(REFRESH_TOKEN_EXPIRATION),
   },
 }

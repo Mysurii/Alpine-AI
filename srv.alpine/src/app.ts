@@ -1,6 +1,9 @@
 import type { Application } from 'express'
-import type { Db, MongoClient } from 'mongodb'
+import type { Db } from 'mongodb'
+import { MongoClient } from 'mongodb'
 import type { Server } from 'http'
+import type { User } from './models/User'
+
 import helmet from 'helmet'
 import cors from 'cors'
 import express from 'express'
@@ -10,9 +13,18 @@ import { envVariables } from './config/config'
 import { connectDb } from './config/db'
 import Logger from './config/Logger'
 import { rateLimiter } from './middlewares/ratelimiter.middleware'
+import { routes } from './routes/'
 
 export let database: Db
-export let databaseClient: MongoClient
+export let databaseClient: MongoClient = new MongoClient(envVariables.DATABASE.url)
+
+declare global {
+  namespace Express {
+    export interface Request {
+      user?: Partial<User>
+    }
+  }
+}
 
 export function bootServer(): Promise<Server> {
   return new Promise((resolve, reject) => {
@@ -41,6 +53,8 @@ export function bootServer(): Promise<Server> {
 
           // second middleware in the request chain is the JSON parser middleware. Parsed request body if the application/json Content-Type is set
           app.use(express.json())
+
+          app.use(routes)
 
           const server = app.listen(envVariables.PORT, () => {
             console.log(`\nServer is listening on port ${chalk.green(envVariables.PORT)}`)
