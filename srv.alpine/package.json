@@ -8,7 +8,8 @@
     "dev": "nodemon --config nodemon.json ./src/server.ts -L -r dotenv_config_path=./.env",
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint src/**/*.ts"
+    "lint": "eslint src/**/*.ts",
+    "gen:keypair": "ts-node ./keypair.ts env_path=./.env"
   },
   "author": "Ali Ozcan",
   "license": "ISC",
