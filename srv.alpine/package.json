@@ -4,7 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "dev": "nodemon",
+    "start": "node ./dist/server.js",
+    "dev": "nodemon --config nodemon.json ./src/server.ts -L -r dotenv_config_path=./.env",
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint src/**/*.ts"
@@ -33,6 +34,7 @@
   },
   "dependencies": {
     "bcrypt": "^5.1.0",
+    "chalk": "4.1.2",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
