@@ -1,12 +1,13 @@
-import './App.css'
+import { BrowserRouter } from 'react-router-dom'
+import Router from './pages/router'
 
 function App () {
 
   return (
     <>
-      <div className='text-red-300 text-5xl'>
-        hello
-      </div>
+      <BrowserRouter>
+        <Router />
+      </BrowserRouter>
     </>
   )
 }
