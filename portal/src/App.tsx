@@ -1,13 +1,13 @@
 import { BrowserRouter } from 'react-router-dom'
 import Router from './pages/router'
+import { Toaster } from 'react-hot-toast'
 
 function App () {
 
   return (
     <>
-      <BrowserRouter>
-        <Router />
-      </BrowserRouter>
+      <Toaster />
+      <Router />
     </>
   )
 }
