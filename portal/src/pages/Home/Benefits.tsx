@@ -24,7 +24,7 @@ const Benefits = () => {
     },
   ];
   return (
-    <div className="bg-indigo-900">
+    <div className="bg-black">
       <div className="py-16 px-6 mx-auto max-w-6xl">
         <div className="flex flex-col gap-5 md:flex-row justify-center">
           {features.map( feature =>

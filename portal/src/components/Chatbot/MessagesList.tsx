@@ -5,7 +5,7 @@ function MessagesList () {
   const { messages } = useMessagesStore()
 
   return (
-    <div className="md:h-[500px] bg-white p-4">
+    <div className="h-[500px] bg-white p-4">
       {messages.map( message => <Bubble message={message} /> )}
     </div>
   )

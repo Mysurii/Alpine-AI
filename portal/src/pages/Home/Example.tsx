@@ -44,7 +44,7 @@ const Example = () => {
     return () => clearInterval( secondTimer )
   }, [] )
   return (
-    <div className="h-screen flex items-center flex-col-reverse lg:flex-row justify-center p-2 lg:p-24 gap-28" id="example">
+    <div className="lg:h-screen flex items-center flex-col-reverse lg:flex-row justify-center p-12 lg:p-24 gap-28" id="example">
       <Chatbot />
       <div className="text-center lg:w-1/3 flex flex-col justify-center">
         <h2 className="text-3xl font-bold font-display">
