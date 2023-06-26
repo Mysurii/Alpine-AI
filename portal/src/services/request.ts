@@ -10,12 +10,7 @@ function handleResponse(err: any): void {
 }
 
 export async function get(uri: string, params?: object): Promise<AxiosResponse | undefined> {
-  try {
-    const response = await api.get(`${envVariables.api_endpoint}/${uri}`, params)
-    return response
-  } catch (err: any) {
-    handleResponse(err)
-  }
+  return await api.get(`${envVariables.api_endpoint}/${uri}`, params)
 }
 
 export async function post(uri: string, payload: object, params?: object): Promise<AxiosResponse | undefined> {

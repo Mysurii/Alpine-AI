@@ -81,7 +81,7 @@ api.interceptors.response.use(
 
           // User has to login if the refresh token is expired
           if (data?.message === 'Refresh token invalid' || data?.message === 'Refresh token expired') {
-            toast.info('Session ended. login is required.')
+            toast('Session ended. login is required.')
             // history.push('/login')
             router.navigate('/login', { replace: true })
             return

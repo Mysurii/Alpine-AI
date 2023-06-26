@@ -1,7 +1,5 @@
-import { MessageResponse } from '../types/ApiResponse'
-import { ICreateUser, ILoginUser, IUser } from '../types/IUser'
-import { post, put } from './requests'
-import { request } from '../services/requests'
+import { ICreateUser, ILoginUser, IUser } from '../types/user.type'
+import { post, put, request } from './request'
 import { SuccessLogin } from '../types/apiresponse.type'
 import { AxiosResponse } from 'axios'
 
@@ -49,7 +47,7 @@ export async function loginUser(loginCredentials: ILoginUser): Promise<IUser | u
   }
 }
 
-export async function forgotPassword(email: ILoginUser['email']): Promise<MessageResponse | string> {
+export async function forgotPassword(email: ILoginUser['email']): Promise<string> {
   try {
     const response = await put('login/reset-password', { email })
 
