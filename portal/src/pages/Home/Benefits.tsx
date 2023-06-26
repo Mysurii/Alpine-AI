@@ -1,6 +1,7 @@
-import { BsFillBriefcaseFill } from "react-icons/bs";
 import { FaChartSimple, FaUserClock } from 'react-icons/fa6'
 import { BsCodeSlash } from 'react-icons/bs'
+
+
 const Benefits = () => {
   const features = [
     {
@@ -23,9 +24,9 @@ const Benefits = () => {
     },
   ];
   return (
-    <div className="bg-indigo-100">
-      <div className="py-12 px-6 mx-auto max-w-6xl">
-        <div className="flex flex-col gap-5 md:flex-row">
+    <div className="bg-indigo-900">
+      <div className="py-16 px-6 mx-auto max-w-6xl">
+        <div className="flex flex-col gap-5 md:flex-row justify-center">
           {features.map( feature =>
             <div
               className="flex flex-col p-8 space-y-4 bg-white rounded-lg border border-gray-200 transition-shadow duration-500 ease-out cursor-pointer hover:shadow-xl"
