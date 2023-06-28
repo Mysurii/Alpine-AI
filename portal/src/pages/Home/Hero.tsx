@@ -3,6 +3,7 @@ import banner from '../../assets/banner.svg'
 import Button from '../../components/ui/buttons/Button'
 import { BsArrowRightShort } from 'react-icons/bs'
 import { AiOutlineDownCircle } from 'react-icons/ai'
+import { Link } from 'react-router-dom'
 
 const Hero: React.FC = () => {
 
@@ -23,7 +24,9 @@ const Hero: React.FC = () => {
               <br />
               Without coding.
             </p>
-            <Button className='mt-12' rounded rightIcon={BsArrowRightShort}>Try now</Button>
+            <Link to="/signup">
+              <Button className='mt-12' rounded rightIcon={BsArrowRightShort}>Try now</Button>
+            </Link>
           </div>
 
           <div className="flex items-end w-1/2 border-b border-gray-400">

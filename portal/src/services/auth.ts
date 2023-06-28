@@ -5,12 +5,12 @@ import { AxiosResponse } from 'axios'
 
 export async function createUser(user: ICreateUser): Promise<AxiosResponse | undefined> {
   try {
-    const response = await post('login/create', user)
+    const response = await post('auth/register', user)
     if (response?.data?.accessToken) {
       const accessToken = response.data.accessToken
       localStorage.setItem('token', JSON.stringify({ accessToken }))
     }
-    return response
+    return response?.data
   } catch (err) {
     console.log('err creating user: ', err)
     throw err
@@ -33,7 +33,6 @@ export async function loginUser(loginCredentials: ILoginUser): Promise<IUser | u
     const decodedAccessToken = JSON.parse(window.atob(accessToken.split('.')[1]).toString())
 
     const user: IUser = {
-      _id: decodedAccessToken._id,
       role: decodedAccessToken.role,
       name,
     }

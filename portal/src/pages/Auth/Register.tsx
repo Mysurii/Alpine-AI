@@ -1,9 +1,44 @@
 import { BsArrowRightShort } from "react-icons/bs"
 import Input from "../../components/ui/Input"
 import Button from "../../components/ui/buttons/Button"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
+import { ChangeEvent, useState } from "react"
+import useAuthStore from "../../stores/auth.store"
+import { useMutation } from "@tanstack/react-query"
+import { ICreateUser, IUser } from "../../types/user.type"
+import { createUser } from "../../services/auth"
+import { AxiosError } from "axios"
+import { ApiErrorResponse } from "../../types/apiresponse.type"
+import toast from "react-hot-toast"
+import { useForm, Controller } from "react-hook-form"
+import { zodResolver } from '@hookform/resolvers/zod'
+import { signUpValueSchema } from "../../validations/signup"
+
 
 const Register = () => {
+  const { control, handleSubmit, formState: { errors } } = useForm( {
+    resolver: zodResolver( signUpValueSchema )
+  } );
+
+  const navigate = useNavigate()
+
+  const mutation = useMutation( {
+    mutationFn: createUser,
+    onSuccess: ( data, variables, context ) => {
+      toast.success( "Succesfully registered." )
+      navigate( '/signin' )
+    },
+    onError: ( error: AxiosError<ApiErrorResponse> ) => {
+      toast.error( error.message )
+    }
+  } )
+
+  const onSubmit = handleSubmit( data => {
+    console.log( data.email )
+    const { email, password, name } = data
+    mutation.mutate( { email, password, name } )
+  } );
+
   return (
     <div className="flex flex-col-reverse lg:flex-row h-screen overflow-hidden">
       <div className="w-full grid place-items-center lg:w-2/3 p-12 lg:p-0 lg:h-screen bg-indigo-900 text-white">
@@ -11,7 +46,6 @@ const Register = () => {
           <h2 className="text-3xl font-bold font-display">Already have an account?</h2>
           <Link to="/signin">
             <Button className="bg-indigo-900">Sign In</Button>
-
           </Link>
         </div>
       </div>
@@ -19,13 +53,31 @@ const Register = () => {
       <div className="h-screen w-full lg:w-1/3 flex flex-col justify-center max-w-lg mx-auto text-center p-12">
         <h1 className="text-3xl font-bold font-display my-8">Sign up</h1>
         <p className="text-lg my-2">Create a free account</p>
-        <form className="flex flex-col gap-4">
-          <Input label="name" name="name" type="text" error="Dit is een error" />
-          <Input label="email" name="email" type="email" />
-          <Input label="password" name="password" type="password" />
-          <Input label="confirm password" name="confirm password" type="password" />
+        <form onSubmit={onSubmit} className="flex flex-col gap-4">
+          {errors.root?.message}
+          <Controller
+            name="name"
+            control={control}
+            render={( { field } ) => <Input {...field} error={errors[ 'name' ]} />}
+          />
+          <Controller
+            name="email"
+            control={control}
+            render={( { field } ) => <Input {...field} error={errors[ 'email' ]} type="email" />}
+          />
+          <Controller
+            name="password"
+            control={control}
+            render={( { field } ) => <Input {...field} error={errors[ 'password' ]} type="password" />}
+          />
+          <Controller
+            name="confirmPassword"
+            control={control}
+            render={( { field } ) => <Input {...field} error={errors[ 'confirmPassword' ]} type="password" />}
+          />
+
         </form>
-        <Button className="mt-8 w-min mx-auto" rightIcon={BsArrowRightShort}>Register</Button>
+        <Button className="mt-8 w-min mx-auto" rightIcon={BsArrowRightShort} onClick={onSubmit}>Register</Button>
       </div>
 
     </div>
