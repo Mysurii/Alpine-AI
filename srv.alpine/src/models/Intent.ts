@@ -1,14 +1,12 @@
 export type Intent = {
   tag: string
   patterns: string[]
-  responses: [
-    [
-      {
-        type: string
-        text: string
-        tag?: string
-      },
-    ],
-  ]
-  followUpQuestions: string[]
+  responses: Array<Response[]>
+  followUpQuestions?: string[]
+}
+
+type Response = {
+  type: string
+  text: string
+  tag?: string
 }

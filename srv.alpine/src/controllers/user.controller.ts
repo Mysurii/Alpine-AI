@@ -12,9 +12,11 @@ import Logger from '../config/Logger'
 import { envVariables } from '../config/config'
 import { HTTP_STATUS } from '../types/http'
 import { createAccessToken, createRefreshToken } from '../helpers/jwt'
+import ChatbotRepository from '../repositories/chatbot.respository'
 
 const userController = Router()
 const userRepository = new UserRepository()
+const chatbotRepository = new ChatbotRepository()
 
 userController.post('/register', async (req: Request, res: Response) => {
   const { email, password, name } = req.body
@@ -43,6 +45,8 @@ userController.post('/register', async (req: Request, res: Response) => {
 
   try {
     userRepository.insert(newUser)
+    const user = await userRepository.findByEmail(email)
+    if (user) chatbotRepository.createBasicChatbot(user._id)
   } catch (err) {
     Logger.error(err)
     return sendError(res, HTTP_STATUS.INTERNAL_SERVER, 'Something went wrong while trying to create accout')

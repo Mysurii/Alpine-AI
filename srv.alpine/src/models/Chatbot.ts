@@ -1,14 +1,15 @@
 import type { Customization } from './Customization'
-import type { BaseEntity } from './BaseEntity'
+import type { BaseEntity, ID } from './BaseEntity'
 import type { Intent } from './Intent'
 
 export type Chatbot = BaseEntity & {
   name: string
   createdAt: Date
   trained: boolean
-  Customization: Customization
+  customization: Customization
   intents: Array<Intent>
   usage: Array<ChatbotUsage>
+  userId: ID
 }
 
 type ChatbotUsage = {

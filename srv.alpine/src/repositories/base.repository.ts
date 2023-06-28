@@ -4,7 +4,7 @@ import type { ID } from '../models/BaseEntity'
 import Logger from '../config/Logger'
 import { envVariables } from '../config/config'
 
-type availableRepos = 'user' | 'product' | 'order'
+type availableRepos = 'user' | 'chatbot'
 
 interface IRead<T> {
   findById: (id: string) => Promise<T | null>
