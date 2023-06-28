@@ -2,17 +2,14 @@ import { BsArrowRightShort } from "react-icons/bs"
 import Input from "../../components/ui/Input"
 import Button from "../../components/ui/buttons/Button"
 import { Link, useNavigate } from "react-router-dom"
-import { ChangeEvent, useState } from "react"
-import useAuthStore from "../../stores/auth.store"
 import { useMutation } from "@tanstack/react-query"
-import { ICreateUser, IUser } from "../../types/user.type"
 import { createUser } from "../../services/auth"
 import { AxiosError } from "axios"
 import { ApiErrorResponse } from "../../types/apiresponse.type"
 import toast from "react-hot-toast"
 import { useForm, Controller } from "react-hook-form"
 import { zodResolver } from '@hookform/resolvers/zod'
-import { signUpValueSchema } from "../../validations/signup"
+import { signUpValueSchema } from "../../validations/auth"
 
 
 const Register = () => {
@@ -24,7 +21,7 @@ const Register = () => {
 
   const mutation = useMutation( {
     mutationFn: createUser,
-    onSuccess: ( data, variables, context ) => {
+    onSuccess: () => {
       toast.success( "Succesfully registered." )
       navigate( '/signin' )
     },

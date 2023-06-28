@@ -42,7 +42,6 @@ const useAuthStore = create<AuthState>( ( set, get ) => ( {
       set( ( state ) => ( { ...state, user: userData } ) )
       return userData
     } catch ( err: any ) {
-      console.log( 'Error in auth store login:', err )
       get().setError( err )
       return undefined
     }
