@@ -17,9 +17,9 @@ const userController = Router()
 const userRepository = new UserRepository()
 
 userController.post('/register', async (req: Request, res: Response) => {
-  const { email, password, name, housenumber, street, city } = req.body
+  const { email, password, name } = req.body
 
-  if (!email || !password || !name || !housenumber || !street || !city)
+  if (!email || !password || !name)
     return sendError(res, HTTP_STATUS.BAD_REQUEST, 'Please provide all the fields required')
 
   if (!validator.isEmail(email)) return sendError(res, HTTP_STATUS.BAD_REQUEST, 'Email is not valid')
@@ -65,7 +65,7 @@ userController.post('/login', async (req: Request, res: Response) => {
 
   const isCorrectPassword = await compare(password, user.password)
 
-  if (!isCorrectPassword) return sendError(res, HTTP_STATUS.INTERNAL_SERVER, 'Invalid credentials')
+  if (!isCorrectPassword) return sendError(res, HTTP_STATUS.BAD_REQUEST, 'Invalid credentials')
 
   let accessToken: string = user.tokens?.access
   let refreshToken: string = user.tokens?.refresh
@@ -103,6 +103,7 @@ userController.post('/login', async (req: Request, res: Response) => {
     accessToken,
     refreshToken,
     role: user.role,
+    name: user.name,
   }
   sendResponse(res, HTTP_STATUS.OK, tokens)
 })

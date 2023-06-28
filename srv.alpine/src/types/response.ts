@@ -5,3 +5,7 @@ export type ErrorResponse = {
   error: HTTP_STATE['status']
   status: HTTP_STATE['code']
 }
+
+export type ChatbotResponse = {
+  response: string | Array<{ text: string; type: 'text' }>
+}
