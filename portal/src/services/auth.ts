@@ -24,7 +24,6 @@ export async function verifyUser(verificationCode: string): Promise<AxiosRespons
 export async function loginUser(loginCredentials: ILoginUser): Promise<IUser | undefined> {
   try {
     const response = await request<ILoginUser, SuccessLogin>('POST', 'auth/login', loginCredentials)
-
     const name = response.data.name
     const accessToken = response.data.accessToken
     const refreshToken = response.data.refreshToken
