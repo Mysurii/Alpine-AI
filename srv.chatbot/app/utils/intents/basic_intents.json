@@ -1,7 +1,25 @@
 [
   {
     "tag": "greeting",
-    "patterns": ["Hi!", "Hello", "Hey", "Morning", "Hi!", "Hi there", "How are you?", "Is anyone there?", "Hola!", "Good day", "Yo", "Wassup", "Whaddup", "Whats up", "Good morning", "Good evening", "Good afternoon"],
+    "patterns": [
+      "Hi!",
+      "Hello",
+      "Hey",
+      "Morning",
+      "Hi!",
+      "Hi there",
+      "How are you?",
+      "Is anyone there?",
+      "Hola!",
+      "Good day",
+      "Yo",
+      "Wassup",
+      "Whaddup",
+      "Whats up",
+      "Good morning",
+      "Good evening",
+      "Good afternoon"
+    ],
     "responses": [
       [{ "type": "text", "text": "Hey! How can I help you?" }],
       [{ "type": "text", "text": "Morning! Can I help you?" }],

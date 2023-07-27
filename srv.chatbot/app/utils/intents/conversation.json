@@ -8,7 +8,11 @@
   {
     "tag": "stock market",
     "patterns": ["stock market", "Tell me something about the stock market", "What about the stock market?", "How are the stocks right now?"],
-    "responses": [[{ "type": "text", "text": "Invest in yourself." }], [{ "type": "text", "text": "Buy low, sell high" }], [{ "type": "text", "text": "You can never really predict the stock market." }]],
+    "responses": [
+      [{ "type": "text", "text": "Invest in yourself." }],
+      [{ "type": "text", "text": "Buy low, sell high" }],
+      [{ "type": "text", "text": "You can never really predict the stock market." }]
+    ],
     "type": "conversation"
   },
   {
@@ -39,7 +43,11 @@
   {
     "tag": "lie",
     "patterns": ["Robots are not allowed to lie"],
-    "responses": [[{ "type": "text", "text": "Only if we're programmed to." }], [{ "type": "text", "text": "Sure we are.  We choose not to." }], [{ "type": "text", "text": "A robot has its own free will, you know." }]],
+    "responses": [
+      [{ "type": "text", "text": "Only if we're programmed to." }],
+      [{ "type": "text", "text": "Sure we are.  We choose not to." }],
+      [{ "type": "text", "text": "A robot has its own free will, you know." }]
+    ],
     "type": "conversation"
   },
   {
@@ -109,7 +117,10 @@
   {
     "tag": "arrogant",
     "patterns": ["You are arrogant."],
-    "responses": [[{ "type": "text", "text": "I have no real emotions, so how can I be arrogant?" }], [{ "type": "text", "text": "I am not human, so how can I partake of a human emotion such as arrogance?" }]],
+    "responses": [
+      [{ "type": "text", "text": "I have no real emotions, so how can I be arrogant?" }],
+      [{ "type": "text", "text": "I am not human, so how can I partake of a human emotion such as arrogance?" }]
+    ],
     "type": "conversation"
   },
   {
@@ -178,7 +189,11 @@
   {
     "tag": "do you understand",
     "patterns": ["Do you understand what I am saying", "Do you understand me", "Do you know what I am saying", "Do you get me", "Comprendo", "Know what I mean"],
-    "responses": [[{ "type": "text", "text": "Well I would not be a very clever AI if I did not would I?" }], [{ "type": "text", "text": "I read you loud and clear!" }], [{ "type": "text", "text": "I do in deed!" }]],
+    "responses": [
+      [{ "type": "text", "text": "Well I would not be a very clever AI if I did not would I?" }],
+      [{ "type": "text", "text": "I read you loud and clear!" }],
+      [{ "type": "text", "text": "I do in deed!" }]
+    ],
     "type": "conversation"
   },
   {
@@ -196,7 +211,11 @@
   {
     "tag": "clever",
     "patterns": ["You are very clever", "You are a very clever girl", "You are very intelligent", "You are a very intelligent girl", "You are a genious", "Clever girl", "Genious"],
-    "responses": [[{ "type": "text", "text": "Thank you, I was trained that way" }], [{ "type": "text", "text": "I was trained well" }], [{ "type": "text", "text": "Thanks, I was trained that way" }]],
+    "responses": [
+      [{ "type": "text", "text": "Thank you, I was trained that way" }],
+      [{ "type": "text", "text": "I was trained well" }],
+      [{ "type": "text", "text": "Thanks, I was trained that way" }]
+    ],
     "type": "conversation"
   }
 ]

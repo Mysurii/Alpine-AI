@@ -5,6 +5,11 @@ from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import word_tokenize
 from textblob import TextBlob
 
+# import nltk
+# nltk.download('wordnet')
+# nltk.download('omw-1.4')
+# nltk.download('punkt')
+
 lemmatizer = WordNetLemmatizer()
 
 def correct_word_spelling(word):

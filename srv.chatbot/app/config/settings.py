@@ -6,10 +6,10 @@ MONGO_URI = os.environ.get("MONGO_URI")
 MONGO_TEST_URI= os.environ.get("MONGO_TEST_URI")
 PORT= os.environ.get('PORT')
 ENVIRONMENT = os.environ.get('FLASK_ENVIRONMENT')
-PICKR_SERVER = os.environ.get('PICKR_SERVER_URL') if ENVIRONMENT == 'production' else ''
+ALPINE_SERVER = os.environ.get('ALPINE_SERVER_URL') if ENVIRONMENT == 'production' else ''
 
-if PICKR_SERVER is None:
-  raise Exception('Pickr server URL is variable not defined!')
+if ALPINE_SERVER is None:
+  raise Exception('Alpine server URL is variable not defined!')
 
 if PORT is None:
   raise Exception('PORT environment variable is not defined!')

@@ -1,6 +1,6 @@
 from flask import Flask, jsonify, request, abort
 from .config.extensions import mongo
-from .config.settings import MONGO_URI, ENVIRONMENT, PICKR_SERVER
+from .config.settings import MONGO_URI, ENVIRONMENT, ALPINE_SERVER
 from .controllers.chatbot import chatbot_bp
 from .utils.exceptions import BaseError
 
@@ -13,8 +13,8 @@ def create_app(db_uri=MONGO_URI):
   app.register_blueprint(chatbot_bp)
 
   @app.before_request
-  def allow_pickr_server_requests_only():
-      if ENVIRONMENT == 'production' and request.remote_addr != PICKR_SERVER:
+  def allow_alpine_server_requests_only():
+      if ENVIRONMENT == 'production' and request.remote_addr != ALPINE_SERVER:
           abort(401)
 
   @app.errorhandler(BaseError)

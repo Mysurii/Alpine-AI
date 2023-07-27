@@ -20,3 +20,4 @@ class NotFound(BaseError):
     super().__init__(message)
     self.status = 404
     self.error='Not Found'
+
