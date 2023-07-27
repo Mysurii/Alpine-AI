@@ -9,10 +9,6 @@ import { request } from "../services/request";
 
 interface AuthState {
   user: IUser | null
-}
-
-interface AuthState {
-  user: IUser | null
   error: AxiosError | null
   verifyUser: ( verificationCode: string ) => Promise<boolean>
   setErrorMessage: ( message: string | null ) => void

@@ -1,25 +1,26 @@
 import crypto from 'crypto'
 import fs from 'fs'
 
-const requiredConfig = ['env_path'] as const
+const requiredConfig = [ 'env_path' ] as const
 
-type Config = Record<(typeof requiredConfig)[number], string>
+type Config = Record<typeof requiredConfig[number], string>
 
 const config = requiredConfig.reduce<Partial<Config>>((accumulator, requiredArgument) => {
-  const found = process.argv.find((argument) => {
+  const found = process.argv.find(argument => {
     return argument.includes(requiredArgument) && argument.includes('=')
   })
 
   if (typeof found === 'undefined') {
     throw Error(`Argument '${requiredArgument}' is required!`)
   }
+  
 
   const split = found.split('=')
 
   accumulator[requiredArgument] = split[1]
 
   return accumulator
-}, {}) as Config
+}, { }) as Config 
 
 const file = fs.readFileSync(config.env_path)
 
@@ -28,7 +29,7 @@ let envContents = file.toString()
 if (envContents.includes('PUBLIC_KEY') || envContents.includes('PRIVATE_KEY')) {
   console.log(
     `Public and or private key are already set in the '${config.env_path}' file, remove these first.\
-    \nBeware, previously encrypted data won't work again since new keys will be generated`,
+    \nBeware, previously encrypted data won't work again since new keys will be generated`
   )
 } else {
   // add keys
@@ -38,12 +39,12 @@ if (envContents.includes('PUBLIC_KEY') || envContents.includes('PRIVATE_KEY')) {
     modulusLength: 2048,
     publicKeyEncoding: {
       type: 'spki', // recommended to be 'spki' by the Node.js docs
-      format: 'pem',
-    },
+      format: 'pem'   
+    },   
     privateKeyEncoding: {
-      type: 'pkcs8', // recommended to be 'pkcs8' by the Node.js docs
-      format: 'pem',
-    },
+      type: 'pkcs8',// recommended to be 'pkcs8' by the Node.js docs
+      format: 'pem'
+    }
   })
 
   const toAppend = `PUBLIC_KEY="${publicKey}"\nPRIVATE_KEY="${privateKey}"`

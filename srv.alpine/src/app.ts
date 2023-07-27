@@ -1,47 +1,54 @@
-import type { Application } from 'express'
-import type { Db } from 'mongodb'
-import { MongoClient } from 'mongodb'
-import type { Server } from 'http'
-import type { User } from './models/User'
-
-import helmet from 'helmet'
-import cors from 'cors'
-import express from 'express'
+/* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-disable no-unused-vars */
 import chalk from 'chalk'
-
-import { envVariables } from './config/config'
-import { connectDb } from './config/db'
-import Logger from './config/Logger'
-import { rateLimiter } from './middlewares/ratelimiter.middleware'
-import { routes } from './routes/'
-import authorizationMiddleware from './middlewares/auth.middleware'
-import { errorHandler } from './middlewares/general'
+import helmet from 'helmet'
+import type { Application } from 'express'
+import express from 'express'
+import type { Server } from 'http'
+import type { Db, MongoClient } from 'mongodb'
+import { awaitDatabaseConnection, env_variables } from './config'
+import {
+  bodyCheckMiddleWare,
+  errorHandlerMiddleware,
+  escapeBodyMiddleware,
+  notFoundMiddleware,
+} from './middlewares/generalMiddlewares'
+import { rateLimiter } from './middlewares/rateLimitMiddleware'
+import type {Account, TokenPayload} from './models/authentication'
+import cors from 'cors'
+import type {Chatbot} from './models/chatbot'
 
 export let database: Db
-export let databaseClient: MongoClient = new MongoClient(envVariables.DATABASE.url)
+export let databaseClient: MongoClient
 
+/**
+ * used for TypeScript reasons to add the possible user property to the Request interface
+ */
 declare global {
   namespace Express {
-    export interface Request {
-      user?: Partial<User>
+    interface Request {
+      user?: Omit<TokenPayload, 'type'>,
+        encryptedToken?: { user: Request['user'], chatbotId?: Chatbot['_id'] }
     }
   }
 }
 
+// Boot express
 export function bootServer(): Promise<Server> {
   return new Promise((resolve, reject) => {
     try {
-      Logger.info('Booting up the server')
-      Logger.log('> Trying to connect to the database')
-      connectDb()
+      console.log('Booting up the server')
+
+      console.log(' Trying to connect to the database')
+      awaitDatabaseConnection
         .then(({ db, client }) => {
-          Logger.log('> Connected to the database!')
+          console.log(' Connected to the database!')
+
           database = db
           databaseClient = client
 
           const app: Application = express()
 
-          // allow CROSS ORIGIN
           app.use(cors())
 
           // is a set of middlewares that sets response headers to help prevent some well-known web vulnerabilities
@@ -56,24 +63,49 @@ export function bootServer(): Promise<Server> {
           // second middleware in the request chain is the JSON parser middleware. Parsed request body if the application/json Content-Type is set
           app.use(express.json())
 
-          app.use(authorizationMiddleware)
+          // if the JSON parser fails due to an invalid JSON body this middleware catches it and returns an error response
+          app.use(bodyCheckMiddleWare)
 
-          // add the routes
-          routes(app)
+          // escapes certain characters from (nested) values
+          app.use(escapeBodyMiddleware)
 
-          app.use(errorHandler)
+          const authMiddleware = require('./middlewares/authorizationMiddleware')
 
-          const server = app.listen(envVariables.PORT, () => {
-            console.log(`\nServer is listening on port ${chalk.green(envVariables.PORT)}`)
+          app.use(authMiddleware.default)
+
+          const router = require('./routes')
+
+          // Add all the controllers to the request chain
+          router.routes(app)
+
+          // the second to last middleware catches all requests that requested a non existing endpoint
+          // after all the routes have been checked for the endpoint and none match was found, the Not Found middleware is called
+          app.use(notFoundMiddleware)
+
+          // the last middleware in the request chain catches all thrown Errors in the routes, depending on the type of error an appropiate message will be returned to the client
+          app.use(errorHandlerMiddleware)
+
+          const server = app.listen(env_variables.PORT, () => {
+            console.log(
+              `\nServer is listening on port ${chalk.green(env_variables.PORT)}`
+            )
             resolve(server)
           })
         })
-        .catch(() => {
-          Logger.error('Could not connect to the database.')
+        .catch((e) => {
+          console.log(e)
+          // database connection could not be made, the server and it's endpoints won't be exposed
+          console.log(
+            chalk.red(
+              'Could not connect to the database...\n  - Is the database running?\n  - Are the .env variables correct?'
+            )
+          )
         })
-    } catch (err) {
-      Logger.error(err)
-      reject(err)
+    } catch (e) {
+      console.log(
+        `${chalk.red('The server and it\'s endpoints are NOT exposed')}`
+      )
+      reject(e)
     }
   })
 }

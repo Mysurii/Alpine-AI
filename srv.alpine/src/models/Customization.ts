@@ -1,4 +1,4 @@
-import type { BaseEntity } from './BaseEntity'
+import type { BaseModel } from './baseModel'
 
 const PRIMARY = '#6D8DFB'
 const LIGHT = '#fffffd'
@@ -17,7 +17,7 @@ export const INITIAL_CUSTOMIZATION = {
   sendButton: PRIMARY,
 } as Customization
 
-export type Customization = BaseEntity & {
+export type Customization = BaseModel & {
   name: string
   nameColor: string
   header: string
@@ -29,5 +29,5 @@ export type Customization = BaseEntity & {
   textBot: string
   avatar: string
   sendButton: string
-  chatbotId: BaseEntity['_id']
+  chatbotId: BaseModel['_id']
 }

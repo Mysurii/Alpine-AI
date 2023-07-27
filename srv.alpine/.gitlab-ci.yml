@@ -1,0 +1,41 @@
+stages:
+  - test
+  - deploy
+
+services:
+  - mongo:latest
+
+unit-test:
+  stage: test
+  tags:
+    - hva # required for using the GitLab HVA runners 
+  image: node:latest  
+  before_script:
+    - npm install
+    - npm run gen:keypair-test
+  script:
+    - npm run test:ci
+  coverage: '/All files\s+\|\s+\d+\.\d+/'
+  artifacts:
+    paths:
+      - testing/coverage/
+    when: always
+    reports:
+      junit:
+        - testing/coverage/junit.xml
+      coverage_report:
+        coverage_format: cobertura
+        path: testing/coverage/cobertura-coverage.xml
+
+deploy-railway:
+  stage: deploy
+  image: ubuntu
+  tags:
+    - hva
+  only:
+    - pushes
+    - main
+  script:
+    - apt-get update && apt-get install -y curl
+    - curl -fsSL https://railway.app/install.sh | sh
+    - railway up --service=$RAILWAY_SERVICE_NAME -d

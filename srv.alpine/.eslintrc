@@ -1,7 +1,7 @@
 {
-  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
+  "extends": [ "eslint:recommended", "plugin:@typescript-eslint/recommended" ],
   "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint"],
+  "plugins": [ "@typescript-eslint" ],
   "env": {
     "node": true,
     "jest": true,
@@ -10,14 +10,11 @@
   "rules": {
     "semi": ["error", "never"],
     "quotes": [2, "single"],
-    "prefer-const": [
-      "error",
-      {
-        "destructuring": "any",
-        "ignoreReadBeforeAssign": false
-      }
-    ],
-    "indent": ["error", 2],
+    "prefer-const": ["error", {
+      "destructuring": "any",
+      "ignoreReadBeforeAssign": false
+    }],
+    "indent": ["error", 2] ,
     "@typescript-eslint/no-explicit-any": "error",
     "@typescript-eslint/consistent-type-imports": "error",
     "@typescript-eslint/no-namespace": "off",

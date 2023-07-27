@@ -1,3 +1,17 @@
-/node_modules
-/dist
+build/
+
+# Dependency directories
+node_modules/
+
+# Output of 'npm pack'
+# *.tgz
+
+# dotenv environment variable files
 .env
+.prod.env
+.test.env
+/.idea/
+/testing/coverage
+junit.xml
+package-lock.json
+yarn.lock

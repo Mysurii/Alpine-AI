@@ -1,12 +1,17 @@
-export type Intent = {
+import type { BaseModel } from './baseModel'
+
+export type Intent = BaseModel & {
   tag: string
   patterns: string[]
-  responses: Array<Response[]>
-  followUpQuestions?: string[]
-}
-
-type Response = {
-  type: string
-  text: string
-  tag?: string
+  responses: [
+    [
+      {
+        type: string
+        text: string
+        tag?: string
+      }
+    ]
+  ]
+  followUpQuestions: string[]
+  chatbotId: BaseModel['_id']
 }

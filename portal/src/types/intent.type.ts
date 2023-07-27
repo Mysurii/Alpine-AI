@@ -1,19 +1,14 @@
-interface IIntent {
+type IIntent = {
   tag: string
   patterns: string[]
-  responses:
-    | [
-        [
-          {
-            type: string
-            text: string
-            tag?: string
-          }
-        ]
-      ]
-    | []
-  followUpQuestions: string[]
-  chatbotId: string
+  responses: Array<Response[]>
+  followUpQuestions?: string[]
+}
+
+type Response = {
+  type: string
+  text: string
+  tag?: string
 }
 
 export default IIntent

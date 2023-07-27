@@ -11,7 +11,7 @@ const data = [ { name: 'Page A', uv: 400, pv: 2400, amt: 2400 },
 function Analytics () {
   return (
     <div className='mt-8'>
-      <ResponsiveContainer width="100%" height={400}>
+      <ResponsiveContainer width="100%" height={350}>
         <LineChart width={400} height={400} data={data}>
           <CartesianGrid stroke="#ccc" />
           <XAxis dataKey="name" />

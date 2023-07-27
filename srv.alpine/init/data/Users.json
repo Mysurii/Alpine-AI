@@ -1,0 +1,520 @@
+[{
+  "_id": "ddce6752-d574-47f4-a94e-bfb81e6798f1",
+  "email": "jesmo@gmail.com",
+  "name": "Jesmo",
+  "password": "$2b$10$4MRpVQWZWH5/RY1YNEL86eUUYjfvh3/ChbbZgSeiUw6ZDG.V3BoWG",
+  "role": "admin",
+  "chatbots": [
+    {
+      "_id": "48ea4243-d0cc-4d59-aef5-7112ea0db335",
+      "name": "Alpine-AI",
+      "intents": [
+        {
+          "tag": "greeting",
+          "patterns": [
+            "Hi!",
+            "Hello",
+            "Hey",
+            "Morning",
+            "Hi!",
+            "Hi there",
+            "How are you?",
+            "Is anyone there?",
+            "Hola!",
+            "Good day",
+            "Yo",
+            "Wassup",
+            "Whaddup",
+            "Whats up",
+            "Good morning",
+            "Good evening",
+            "Good afternoon"
+          ],
+          "responses": [
+            [
+              {
+                "type": "text",
+                "text": "Hey! How can I help you?"
+              }
+            ],
+            [
+              {
+                "type": "text",
+                "text": "Morning! Can I help you?"
+              }
+            ],
+            [
+              {
+                "type": "text",
+                "text": "Hey! How can I help you?"
+              }
+            ],
+            [
+              {
+                "type": "text",
+                "text": "heya! How can I help you?"
+              }
+            ],
+            [
+              {
+                "type": "text",
+                "text": "yo! Got any questions?"
+              }
+            ]
+          ]
+        },
+        {
+          "tag": "ask_fine",
+          "patterns": [
+            "How are you?",
+            "How is it going?",
+            "How are you doing?",
+            "are you alright?"
+          ],
+          "responses": [
+            [
+              {
+                "type": "text",
+                "text": "I am great! Thank you for asking."
+              }
+            ]
+          ]
+        },
+        {
+          "tag": "name",
+          "patterns": [
+            "What's your name?",
+            "Who are you?",
+            "Whats your name?",
+            "Who is you?",
+            "Tell me your name",
+            "Who are you?"
+          ],
+          "responses": [
+            [
+              {
+                "type": "text",
+                "text": "I am a virtual assistant. Is there anything I can do for you?"
+              }
+            ]
+          ]
+        },
+        {
+          "tag": "goodbye",
+          "patterns": [
+            "Goodbye!",
+            "See you later!",
+            "Nice chatting to you, bye!",
+            "Bye",
+            "Till next time",
+            "Ciao!",
+            "cya",
+            "Im gone",
+            "I am leaving",
+            "g2g",
+            "gotta go"
+          ],
+          "responses": [
+            [
+              {
+                "type": "text",
+                "text": "Have a great day!"
+              }
+            ],
+            [
+              {
+                "type": "text",
+                "text": "Have a nice day. See you later!"
+              }
+            ]
+          ]
+        },
+        {
+          "tag": "thanks",
+          "patterns": [
+            "Thanks!",
+            "Thank you!",
+            "That's helpful",
+            "Awesome, thanks!",
+            "Thanks for helping me",
+            "ty",
+            "tyvm"
+          ],
+          "responses": [
+            [
+              {
+                "type": "text",
+                "text": "No worries!"
+              }
+            ],
+            [
+              {
+                "type": "text",
+                "text": "Anytime!"
+              }
+            ]
+          ]
+        },
+        {
+          "tag": "denial",
+          "patterns": [
+            "No",
+            "No Thank you!",
+            "No thanks",
+            "nty",
+            "No ty",
+            "tyvm"
+          ],
+          "responses": [
+            {
+              "type": "text",
+              "text": "Okay!"
+            }
+          ]
+        }
+      ],
+      "createdAt": {
+        "$numberLong": "1669993465533"
+      },
+      "trained": false,
+      "amountTrained": 4,
+      "usage": [
+        {
+          "date": "2022-11-10",
+          "value": 9
+        },
+        {
+          "date": "2022-11-11",
+          "value": 5
+        },
+        {
+          "date": "2022-11-12",
+          "value": 1
+        },
+        {
+          "date": "2022-11-13",
+          "value": 1
+        },
+        {
+          "date": "2022-11-14",
+          "value": 33
+        },
+        {
+          "date": "2022-11-15",
+          "value": 22
+        },
+        {
+          "date": "2022-11-16",
+          "value": 9
+        },
+        {
+          "date": "2022-11-17",
+          "value": 30
+        },
+        {
+          "date": "2022-11-18",
+          "value": 27
+        },
+        {
+          "date": "2022-11-19",
+          "value": 1
+        },
+        {
+          "date": "2022-11-20",
+          "value": 11
+        },
+        {
+          "date": "2022-11-21",
+          "value": 9
+        },
+        {
+          "date": "2022-11-22",
+          "value": 23
+        },
+        {
+          "date": "2022-11-23",
+          "value": 8
+        },
+        {
+          "date": "2022-11-24",
+          "value": 31
+        },
+        {
+          "date": "2022-11-25",
+          "value": 25
+        },
+        {
+          "date": "2022-11-26",
+          "value": 2
+        },
+        {
+          "date": "2022-11-27",
+          "value": 8
+        },
+        {
+          "date": "2022-11-28",
+          "value": 2
+        },
+        {
+          "date": "2022-11-29",
+          "value": 28
+        },
+        {
+          "date": "2022-11-30",
+          "value": 21
+        },
+        {
+          "date": "2022-12-01",
+          "value": 30
+        },
+        {
+          "date": "2022-12-02",
+          "value": 28
+        },
+        {
+          "date": "2022-12-03",
+          "value": 13
+        },
+        {
+          "date": "2022-12-04",
+          "value": 19
+        },
+        {
+          "date": "2022-12-05",
+          "value": 4
+        },
+        {
+          "date": "2022-12-06",
+          "value": 9
+        },
+        {
+          "date": "2022-12-07",
+          "value": 14
+        },
+        {
+          "date": "2022-12-08",
+          "value": 4
+        },
+        {
+          "date": "2022-12-09",
+          "value": 10
+        }
+      ]
+    },
+    {
+      "_id": "b5ed66d1-fa26-490d-a30d-489147788cbc",
+      "name": "Customer service",
+      "intents": [
+        {
+          "tag": "greeting",
+          "patterns": [
+            "Hi!",
+            "Hello",
+            "Hey",
+            "Morning",
+            "Hi!",
+            "Hi there",
+            "How are you?",
+            "Is anyone there?",
+            "Hola!",
+            "Good day",
+            "Yo",
+            "Wassup",
+            "Whaddup",
+            "Whats up",
+            "Good morning",
+            "Good evening",
+            "Good afternoon"
+          ],
+          "responses": [
+            [
+              {
+                "type": "text",
+                "text": "Hey! How can I help you?"
+              }
+            ],
+            [
+              {
+                "type": "text",
+                "text": "Morning! Can I help you?"
+              }
+            ],
+            [
+              {
+                "type": "text",
+                "text": "Hey! How can I help you?"
+              }
+            ],
+            [
+              {
+                "type": "text",
+                "text": "heya! How can I help you?"
+              }
+            ],
+            [
+              {
+                "type": "text",
+                "text": "yo! Got any questions?"
+              }
+            ]
+          ]
+        },
+        {
+          "tag": "ask_fine",
+          "patterns": [
+            "How are you?",
+            "How is it going?",
+            "How are you doing?",
+            "are you alright?"
+          ],
+          "responses": [
+            [
+              {
+                "type": "text",
+                "text": "I am great! Thank you for asking."
+              }
+            ]
+          ]
+        },
+        {
+          "tag": "name",
+          "patterns": [
+            "What's your name?",
+            "Who are you?",
+            "Whats your name?",
+            "Who is you?",
+            "Tell me your name",
+            "Who are you?"
+          ],
+          "responses": [
+            [
+              {
+                "type": "text",
+                "text": "I am a virtual assistant. Is there anything I can do for you?"
+              }
+            ]
+          ]
+        },
+        {
+          "tag": "goodbye",
+          "patterns": [
+            "Goodbye!",
+            "See you later!",
+            "Nice chatting to you, bye!",
+            "Bye",
+            "Till next time",
+            "Ciao!",
+            "cya",
+            "Im gone",
+            "I am leaving",
+            "g2g",
+            "gotta go"
+          ],
+          "responses": [
+            [
+              {
+                "type": "text",
+                "text": "Have a great day!"
+              }
+            ],
+            [
+              {
+                "type": "text",
+                "text": "Have a nice day. See you later!"
+              }
+            ]
+          ]
+        },
+        {
+          "tag": "thanks",
+          "patterns": [
+            "Thanks!",
+            "Thank you!",
+            "That's helpful",
+            "Awesome, thanks!",
+            "Thanks for helping me",
+            "ty",
+            "tyvm"
+          ],
+          "responses": [
+            [
+              {
+                "type": "text",
+                "text": "No worries!"
+              }
+            ],
+            [
+              {
+                "type": "text",
+                "text": "Anytime!"
+              }
+            ]
+          ]
+        },
+        {
+          "tag": "denial",
+          "patterns": [
+            "No",
+            "No Thank you!",
+            "No thanks",
+            "nty",
+            "No ty",
+            "tyvm"
+          ],
+          "responses": [
+            [
+              {
+                "type": "text",
+                "text": "Okay!"
+              }
+            ]
+          ]
+        }
+      ],
+      "customization": {
+        "name": "Alpine",
+        "nameColor": "#fffffd",
+        "header": "#6D8DFB",
+        "close": "#fffffd",
+        "messagesList": "#fffffd",
+        "bubbleUser": "gray",
+        "textUser": "#fffffd",
+        "bubbleBot": "#6D8DFB",
+        "textBot": "#fffffd",
+        "avatar": "https://miro.medium.com/max/525/1*lyyXmbeoK5JiIBNCnzzjjg.png",
+        "sendButton": "#6D8DFB"
+      },
+      "createdAt": {
+        "$numberLong": "1670575496055"
+      },
+      "trained": false,
+      "usage": [{"date":"2022-11-10","value":48},{"date":"2022-11-11","value":66},{"date":"2022-11-12","value":58},{"date":"2022-11-13","value":19},{"date":"2022-11-14","value":75},{"date":"2022-11-15","value":31},{"date":"2022-11-16","value":61},{"date":"2022-11-17","value":40},{"date":"2022-11-18","value":65},{"date":"2022-11-19","value":86},{"date":"2022-11-20","value":8},{"date":"2022-11-21","value":48},{"date":"2022-11-22","value":24},{"date":"2022-11-23","value":69},{"date":"2022-11-24","value":33},{"date":"2022-11-25","value":65},{"date":"2022-11-26","value":64},{"date":"2022-11-27","value":95},{"date":"2022-11-28","value":97},{"date":"2022-11-29","value":20},{"date":"2022-11-30","value":94},{"date":"2022-12-01","value":49},{"date":"2022-12-02","value":23},{"date":"2022-12-03","value":55},{"date":"2022-12-04","value":23},{"date":"2022-12-05","value":3},{"date":"2022-12-06","value":39},{"date":"2022-12-07","value":84},{"date":"2022-12-08","value":51},{"date":"2022-12-09","value":23}],
+      "amountTrained": 1,
+      "description": ""
+    }
+  ]
+},{
+  "_id": "6dbbe9ee-13f7-484f-b5d8-dc9cb9e4046b",
+  "email": "ali@gmail.com",
+  "name": "Ali",
+  "password": "$2b$10$ZK8/q98amb.WlSxyFE/Ujezkivgyi/fDgL23TyXrPU5YRDB7s1kEG",
+  "role": "admin"
+},{
+  "_id": "f413bd35-c4ec-4548-a591-2a77440ee1ed",
+  "email": "sven@gmail.com",
+  "name": "Sven",
+  "password": "$2b$10$RxiGeEM.ZrsLNVOP256qN.rn0Oj/acrlQGOyqQ6V5LcdUvg.2x966",
+  "role": "admin"
+},{
+  "_id": "31751669-a24d-47e8-9d86-ea757d1e5998",
+  "email": "kenneth@gmail.com",
+  "name": "Kenneth",
+  "password": "$2b$10$8i02bQBGClhXaYar/jaUQuCRr8wmlTfcIrE51FbbgWxJyP4MvoJte",
+  "role": "admin"
+},{
+  "_id": "17608fee-aaae-4d4b-9579-8220512df05e",
+  "email": "user@gmail.com",
+  "name": "user",
+  "password": "$2b$10$I20rxKv18bLOASvVWmqbJ.7CHaExowNRv3z8wPxxeMabU/uO01qZq",
+  "role": "user"
+}]

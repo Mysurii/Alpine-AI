@@ -4,11 +4,17 @@ import IIntent from './intent.type'
 interface IChatbot {
   _id: string
   name: string
-  description?: string
+  trained: boolean
   customization: ICustomization
   intents: IIntent[]
-  usage: Array<{ date: string; value: number }>
+  usage: Array<ChatbotUsage>
+
   amountTrained: number
+}
+
+type ChatbotUsage = {
+  date: string
+  value: number
 }
 
 export default IChatbot

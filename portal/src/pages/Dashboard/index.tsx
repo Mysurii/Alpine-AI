@@ -5,12 +5,13 @@ import Analytics from './Analytics'
 
 function Dashboard () {
   const { user } = useAuthStore()
+
   return (
     <div className='container mx-auto p-4'>
       {user && <h3 className='text-md font-bold text-indigo-500 font-display my-4 '>Welcome {user?.name}!</h3>}
       <div className='grid grid-cols-1 lg:grid-cols-2 gap-8'>
-        <div className=''>
-          <h3 className='text-3xl  font-bold'>
+        <div>
+          <h3 className='text-3xl font-bold'>
             News
           </h3>
           <ul className='flex flex-col gap-1 p4'>
@@ -30,7 +31,9 @@ function Dashboard () {
 
         </div>
       </div>
-
+      <h3 className='text-3xl font-bold my-4'>
+        My chatbot usage
+      </h3>
       <Analytics />
 
 
