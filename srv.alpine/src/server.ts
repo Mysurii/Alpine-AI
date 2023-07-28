@@ -1,28 +1,17 @@
-import 'dotenv/config'
-import chalk from 'chalk'
+import app from 'app'
 
-import { Server } from 'http'
-import { bootServer, databaseClient } from './app'
-
-let server: Server
-bootServer().then(s => server = s).catch(e => {
-  console.log('Something went wrong while booting up the server...')
-})
+const server = app.listen(8000, () => console.log('Server is listening on port 8000'))
 
 process.on('SIGINT', cleanup)
 process.on('SIGTERM', cleanup)
 
-async function cleanup (): Promise<void> {
-  console.log(chalk.yellow('Server is closing...\n'))
-  server.close(async (error) => {
-    if (error) {
-      console.log(chalk.red('Server was never opened'))
-    }
-    const hasConnection = databaseClient != null
-    console.log(chalk.yellow(`Has database connection: ${hasConnection ? chalk.green(hasConnection) : chalk.red(hasConnection)}`))
-    if (hasConnection) {
-      console.log(chalk.yellow('Closing database connection...'))
-      await databaseClient.close()
-    }
+process.on('unhandledRejection', (error, promise) => {
+  console.error(`Error: ${error}`)
+  server.close(() => process.exit(1))
+})
+
+async function cleanup(): Promise<void> {
+  server.close(async (err) => {
+    if (err) console.warn('Server was never opened..')
   })
 }
