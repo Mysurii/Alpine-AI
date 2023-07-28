@@ -1,4 +1,4 @@
-import app from 'app'
+import app from './app'
 
 const server = app.listen(8000, () => console.log('Server is listening on port 8000'))
 

@@ -8,7 +8,10 @@
     "dev": "nodemon src/server.ts",
     "start": "node dist/server.js",
     "test": "jest --passWithNoTests --runInBand --no-cache",
-    "test:coverage": "npm run test -- --coverage"
+    "test:stage": "npm run test -- --findRelatedTests",
+    "test:coverage": "npm run test -- --coverage",
+    "lint": "eslint  --ignore-path .gitignore --ext .ts --fix",
+    "prepare": "husky install"
   },
   "author": "Ali Ozcan",
   "license": "ISC",
@@ -17,10 +20,17 @@
     "@types/express": "^4.17.17",
     "@types/jest": "^29.5.3",
     "@types/node": "^20.4.5",
+    "@typescript-eslint/eslint-plugin": "^5.52.0",
+    "eslint": "^8.0.1",
+    "eslint-config-standard-with-typescript": "^37.0.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-n": "^15.0.0 || ^16.0.0 ",
+    "eslint-plugin-promise": "^6.0.0",
     "jest": "^29.6.2",
     "nodemon": "^3.0.1",
     "ts-jest": "^29.1.1",
-    "typescript": "^5.1.6"
+    "typescript": "*",
+    "husky": "^8.0.0"
   },
   "dependencies": {
     "cors": "^2.8.5",
