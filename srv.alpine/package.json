@@ -7,7 +7,8 @@
     "build": "tsc",
     "dev": "nodemon src/server.ts",
     "start": "node dist/server.js",
-    "test": "jest"
+    "test": "jest --passWithNoTests --runInBand --no-cache",
+    "test:coverage": "npm run test -- --coverage"
   },
   "author": "Ali Ozcan",
   "license": "ISC",
@@ -18,6 +19,7 @@
     "@types/node": "^20.4.5",
     "jest": "^29.6.2",
     "nodemon": "^3.0.1",
+    "ts-jest": "^29.1.1",
     "typescript": "^5.1.6"
   },
   "dependencies": {
