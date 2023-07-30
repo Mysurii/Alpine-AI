@@ -3,6 +3,7 @@ import express from 'express'
 import cors from 'cors'
 import helmet from 'helmet'
 import authRoute from './api/auth'
+import chatbotRoute from './api/chatbot'
 import errorHandler from '@middlewares/errorHandler.middleware'
 import { envVariables } from '@config/variables'
 import { Server } from 'http'
@@ -58,6 +59,7 @@ class AppController {
 
   private routes() {
     this.express.use('/api/auth', authRoute)
+    this.express.use('/api/chatbot', chatbotRoute)
     // errors handling, should be last in the chain!
     this.express.use(errorHandler)
   }

@@ -1,0 +1,45 @@
+[
+  {
+    "tag": "greeting",
+    "patterns": ["Hi!", "Hello", "Hey", "Morning", "Hi!", "Hi there", "How are you?", "Is anyone there?", "Hola!", "Good day", "Yo", "Wassup", "Whaddup", "Whats up", "Good morning", "Good evening", "Good afternoon"],
+    "responses": [
+      [{ "type": "text", "text": "Hey! How can I help you?" }],
+      [{ "type": "text", "text": "Morning! Can I help you?" }],
+      [{ "type": "text", "text": "Hey! How can I help you?" }],
+      [{ "type": "text", "text": "heya! How can I help you?" }],
+      [{ "type": "text", "text": "yo! Got any questions?" }]
+    ]
+  },
+  {
+    "tag": "ask_fine",
+    "patterns": ["How are you?", "How is it going?", "How are you doing?", "are you alright?"],
+    "responses": [[{ "type": "text", "text": "I am great! Thank you for asking." }]]
+  },
+  {
+    "tag": "name",
+    "patterns": ["What's your name?", "Who are you?", "Whats your name?", "Who is you?", "Tell me your name", "Who are you?"],
+    "responses": [
+      [
+        {
+          "type": "text",
+          "text": "I am a virtual assistant. Is there anything I can do for you?"
+        }
+      ]
+    ]
+  },
+  {
+    "tag": "goodbye",
+    "patterns": ["Goodbye!", "See you later!", "Nice chatting to you, bye!", "Bye", "Till next time", "Ciao!", "cya", "Im gone", "I am leaving", "g2g", "gotta go"],
+    "responses": [[{ "type": "text", "text": "Have a great day!" }], [{ "type": "text", "text": "Have a nice day. See you later!" }]]
+  },
+  {
+    "tag": "thanks",
+    "patterns": ["Thanks!", "Thank you!", "That's helpful", "Awesome, thanks!", "Thanks for helping me", "ty", "tyvm"],
+    "responses": [[{ "type": "text", "text": "No worries!" }], [{ "type": "text", "text": "Anytime!" }]]
+  },
+  {
+    "tag": "denial",
+    "patterns": ["No", "No Thank you!", "No thanks", "nty", "No ty", "tyvm"],
+    "responses": [[{ "type": "text", "text": "Okay!" }]]
+  }
+]
