@@ -1,4 +1,4 @@
-import type { HTTP_STATUS } from '@interfaces/http'
+import type { HTTP_STATUS } from '@common/interfaces/http'
 
 abstract class BaseError extends Error {
   abstract status: number
@@ -7,8 +7,6 @@ abstract class BaseError extends Error {
   constructor(message: string) {
     super(message)
   }
-
-  abstract serializeErrors(): { message: string }
 }
 
 export default BaseError

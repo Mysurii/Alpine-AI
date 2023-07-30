@@ -1,4 +1,4 @@
-import BaseError from '@utils/errors/base.error'
+import BaseError from '@common/helpers/errors/base.error'
 
 class ValidationError extends BaseError {
   status = 400
@@ -6,10 +6,6 @@ class ValidationError extends BaseError {
 
   constructor(message: string) {
     super(message)
-  }
-
-  serializeErrors() {
-    return { message: this.message, status: this.status }
   }
 }
 

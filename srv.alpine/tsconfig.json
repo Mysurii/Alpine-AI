@@ -32,8 +32,8 @@
     "paths": {
       "@api/*": ["api/*"],
       "@middlewares/*": ["middlewares/*"],
-      "@utils/*": ["utils/*"],
-      "@interfaces/*": ["interfaces/*"],
+      "@common/*": ["common/*"],
+      "@config/*": ["config/*"],
       "@test/*": ["../test/*"]
     } /* Specify a set of entries that re-map imports to additional lookup locations. */,
     "rootDirs": ["src", "test"] /* Allow multiple folders to be treated as one when resolving modules. */,

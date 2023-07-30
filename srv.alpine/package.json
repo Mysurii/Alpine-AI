@@ -18,9 +18,12 @@
   "author": "Ali Ozcan",
   "license": "ISC",
   "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
     "@types/cors": "^2.8.13",
     "@types/express": "^4.17.17",
     "@types/jest": "^29.5.3",
+    "@types/jsonwebtoken": "^9.0.2",
+    "@types/mongodb": "^4.0.7",
     "@types/node": "^20.4.5",
     "@typescript-eslint/eslint-plugin": "^5.52.0",
     "concurrently": "^8.2.0",
@@ -37,16 +40,21 @@
     "typescript": "*"
   },
   "dependencies": {
+    "bcrypt": "^5.1.0",
     "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "helmet": "^7.0.0",
-    "module-alias": "^2.2.3"
+    "jsonwebtoken": "^9.0.1",
+    "module-alias": "^2.2.3",
+    "mongodb": "^5.7.0",
+    "zod": "^3.21.4"
   },
   "_moduleAliases": {
-    "@api": "dist/api",
-    "@middlewares": "dist/middlewares",
-    "@utils": "dist/utils",
-    "@interfaces": "dist/interfaces",
+    "@api": "src/api",
+    "@middlewares": "src/middlewares",
+    "@common": "src/common",
+    "@config": "src/config",
     "@test": "test"
   }
 }
