@@ -4,11 +4,12 @@ import cors from 'cors'
 import helmet from 'helmet'
 import authRoute from './api/auth'
 import errorHandler from '@middlewares/errorHandler.middleware'
-import { TokenPayload } from '@api/auth/types/loginRequest'
 import { envVariables } from '@config/variables'
 import { Server } from 'http'
 import type { Db, MongoClient } from 'mongodb'
 import { connectDb } from '@config/db'
+import authMiddleware from '@middlewares/auth.middleware'
+import Account from '@api/auth/account.model'
 
 export let database: Db
 export let databaseClient: MongoClient
@@ -16,7 +17,7 @@ export let databaseClient: MongoClient
 declare global {
   namespace Express {
     interface Request {
-      user?: Omit<TokenPayload, 'type'>
+      user?: Account
     }
   }
 }
@@ -51,6 +52,8 @@ class AppController {
     this.express.use(express.urlencoded({ extended: false }))
     // parse data from/to json objects
     this.express.use(express.json())
+    // authentication & authorization
+    this.express.use(authMiddleware)
   }
 
   private routes() {

@@ -4,6 +4,7 @@ import ValidationError from '@common/helpers/errors/validation.error'
 import NotFound from '@common/helpers/errors/notFound'
 import { SuccessLogin, Tokens } from './types/loginRequest'
 import { RouteWrapper } from '@common/helpers/route-wrapper'
+import { JwtPayload } from 'jsonwebtoken'
 
 class AuthController {
   private authService: AuthService = new AuthService()
@@ -47,9 +48,16 @@ class AuthController {
   refresh = RouteWrapper(async (req: Request, res: Response, next: NextFunction) => {
     const { refreshToken } = req.body as Pick<Tokens, 'refreshToken'>
 
-    const tokens = await this.authService.verifyToken(refreshToken, 'rt')
+    const { _id, role } = this.authService.verifyToken(refreshToken, 'rt') as JwtPayload
 
-    return res.json(tokens)
+    const { accessToken } = this.authService.generateTokens({ _id, role })
+
+    return res.json({ accessToken })
+  })
+
+  test = RouteWrapper(async (req: Request, res: Response, next: NextFunction) => {
+    console.log('user:', req.user)
+    return res.json({ Hellow: 'World' })
   })
 }
 

@@ -9,6 +9,7 @@ import NotFound from '@common/helpers/errors/notFound'
 import ServerError from '@common/helpers/errors/server-error'
 import { envVariables } from '@config/variables'
 import jwt, { JwtPayload } from 'jsonwebtoken'
+import BadRequest from '@common/helpers/errors/badrequest'
 
 export default class AuthService {
   private authRepository: AuthRepository
@@ -19,6 +20,11 @@ export default class AuthService {
 
   findUser = async (email: string): Promise<Account | null> => {
     const user = await this.authRepository.findByEmail(email)
+    return user
+  }
+
+  findById = async (id: string): Promise<Account | null> => {
+    const user = await this.authRepository.findOne(id)
     return user
   }
 
@@ -59,33 +65,13 @@ export default class AuthService {
     return { accessToken, refreshToken } satisfies Tokens
   }
 
-  verifyToken = async (token: string, tokenType: TokenType): Promise<Tokens> => {
+  verifyToken = (token: string, tokenType: TokenType): JwtPayload | string => {
     const key = tokenType === 'at' ? envVariables.TOKENS.atPrivateKey : envVariables.TOKENS.rtPrivateKey
-    const { _id: userId, type, exp } = jwt.verify(token, key) as JwtPayload & TokenPayload
 
-    const user = await this.authRepository.findOne(userId)
-
-    if (user === null) throw new NotFound('User not found')
-
-    let tokens = user.tokens as Tokens
-
-    if (tokens === null) throw new NotFound('Token does not exist.')
-
-    const newTokens = this.generateTokens(user)
-
-    if (tokenType === 'at') {
-      tokens['accessToken'] = newTokens.accessToken
-    } else {
-      const decodedAt = jwt.decode(token) as JwtPayload
-      if (Date.now() >= decodedAt.exp! * 1000) {
-        tokens['accessToken'] = newTokens.accessToken
-      }
-      tokens['refreshToken'] = tokens.refreshToken
+    try {
+      return jwt.verify(token, key)
+    } catch {
+      throw new BadRequest('Invalid or expired token!')
     }
-
-    user.tokens = tokens
-    await this.updateUser(user)
-
-    return tokens
   }
 }

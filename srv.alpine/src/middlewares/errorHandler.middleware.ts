@@ -7,6 +7,8 @@ const errorHandler = async (err: any, req: Request, res: Response, next: NextFun
   let status: number = err.code ? err.code : 500
   let type: HTTP_STATUS = 'internal_server'
 
+  console.log('in here!!')
+
   if (err instanceof BaseError) {
     message = err.message
     status = err.status
