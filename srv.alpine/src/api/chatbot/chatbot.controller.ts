@@ -49,6 +49,46 @@ class ChatbotController {
 
     return res.status(200).json({ data: created })
   })
+
+  updateSpecific = RouteWrapper(async (req: Request, res: Response, next: NextFunction) => {
+    const { name, description, intents, customization } = req.body
+    const { id } = req.params
+
+    const user = req.user
+
+    if (!user) throw new BadRequest('User is not logged in!')
+
+    const chatbot = {
+      _id: id,
+      userId: user._id,
+      name,
+      description,
+      intents: basicIntents,
+      customization: INITIAL_CUSTOMIZATION,
+      trained: false,
+      usage: [],
+      amountTrained: 0,
+    }
+
+    const updated = await this.chatbotService.update(id, chatbot)
+
+    res.status(204).json()
+  })
+
+  delete = RouteWrapper(async (req: Request, res: Response, next: NextFunction) => {
+    const { name, description, intents, customization } = req.body
+    const { _id } = req.params
+
+    const user = req.user
+
+    if (!user) throw new BadRequest('User is not logged in!')
+
+    const deleted = await this.chatbotService.delete(_id, user._id)
+
+    if (!deleted) throw new BadRequest('Could not delete the chatbot')
+
+    return res.status(204).json()
+  })
 }
 
 export default new ChatbotController()
