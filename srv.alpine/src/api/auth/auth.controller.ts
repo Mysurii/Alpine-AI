@@ -12,8 +12,8 @@ class AuthController {
   register = RouteWrapper(async (req: Request, res: Response, next: NextFunction) => {
     const { name, email, password } = req.body
 
+    console.log({ name, email, password })
     await this.authService.createUser({ name, email, password })
-
     return res.status(204).json()
   })
 
@@ -42,7 +42,7 @@ class AuthController {
       tokens,
     } satisfies SuccessLogin
 
-    return res.status(200).json({ data: successLogin })
+    return res.status(200).json(successLogin)
   })
 
   refresh = RouteWrapper(async (req: Request, res: Response, next: NextFunction) => {

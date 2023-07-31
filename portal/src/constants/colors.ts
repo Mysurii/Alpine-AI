@@ -1,0 +1,5 @@
+export const PRIMARY = '#6D8DFB'
+export const LIGHT = '#fffffd'
+export const DARK = '#17132a'
+export const DARKER = '#100d1e'
+export const ERROR = '#e94560'

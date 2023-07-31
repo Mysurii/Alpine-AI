@@ -1,10 +1,11 @@
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, ResponsiveContainer } from 'recharts'
 
-const data = [ { name: 'Page A', uv: 400, pv: 2400, amt: 2400 },
-{ name: 'Page B', uv: 412, },
-{ name: 'Page C', uv: 354, },
-{ name: 'Page D', uv: 321, },
-{ name: 'Page E', uv: 321, },
+const data = [
+  { name: '22 jul', uv: 478 },
+  { name: '23 jul', uv: 612, },
+  { name: '24 jul', uv: 486, },
+  { name: '25 jul', uv: 613, },
+  { name: '26 jul', uv: 323, },
 ];
 
 

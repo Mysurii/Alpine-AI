@@ -7,7 +7,7 @@ function Dashboard () {
   const { user } = useAuthStore()
 
   return (
-    <div className='container mx-auto p-4'>
+    <div className='container mx-auto p-5'>
       {user && <h3 className='text-md font-bold text-indigo-500 font-display my-4 '>Welcome {user?.name}!</h3>}
       <div className='grid grid-cols-1 lg:grid-cols-2 gap-8'>
         <div>

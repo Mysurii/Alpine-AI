@@ -1,0 +1,35 @@
+stages:          # List of stages for jobs, and their order of execution
+  - build
+  - fetch
+
+build-job:     # This job runs in the build stage, which runs first.
+  tags: 
+  - hva
+  image: node:latest  
+  stage: build
+  script:
+    - echo "Installing dependencies"
+    - npm i
+    - npm i wrangler -g
+    - echo "Adding env variables"
+    - echo "VITE_API_ENDPOINT=$VITE_API_ENDPOINT" >> .env
+    - echo "Building code..."
+    - npm run build
+    - CLOUDFLARE_API_TOKEN=$CLOUDTOKEN wrangler pages publish ./dist --project-name=alpine-portal --branch=main
+
+
+fetch-widget-job:
+  tags:
+  - hva
+  image: node:latest  
+  stage: fetch
+  script:
+    - echo "Fetching widget build"
+
+# deploy-job:   # This job runs in the test stage.
+#   tags: 
+#   - hva
+#   image: node:latest  
+#   stage: deploy    # It only starts when the job in the build stage completes successfully.
+#   script:
+

@@ -5,12 +5,12 @@ export default class ChatbotRepository extends BaseRepository<Chatbot> {
     return await this.collection.find<Chatbot>({ userId }).toArray()
   }
 
-  incrementChatbotUsage = async (userId: string, chatbotId: string) => {
+  incrementChatbotUsage = async (chatbotId: string) => {
     const bot = await this.findOne(chatbotId)
 
     if (!bot) return
 
-    const currentDate = new Date().toISOString().split('T')[0]
+    const currentDate = new Date(2023, 6, 30).toISOString().split('T')[0]
     let incremented = false
 
     const usage =

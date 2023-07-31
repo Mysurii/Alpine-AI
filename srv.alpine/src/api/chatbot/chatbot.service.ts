@@ -18,6 +18,10 @@ export default class ChatbotService {
     return await this.chatbotRepository.getChatbotsOfUser(userId)
   }
 
+  getChatbotById = async (id: string) => {
+    return await this.chatbotRepository.findOne(id)
+  }
+
   update = async (id: string, chatbot: Partial<Chatbot>) => {
     return await this.chatbotRepository.update(id, chatbot)
   }
@@ -30,7 +34,11 @@ export default class ChatbotService {
     return await this.chatbotRepository.delete(chatbotId)
   }
 
-  incrementUsage = async () => {
-    await this.incrementUsage()
+  incrementUsage = async (id: string) => {
+    const chatbot = await this.getChatbotById(id)
+
+    if (!chatbot) throw new NotFound('Chatbot not found.')
+
+    return await this.chatbotRepository.incrementChatbotUsage(id)
   }
 }

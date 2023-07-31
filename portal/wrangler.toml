@@ -1,0 +1,5 @@
+name = "Portal-Production"
+account_id = "1ca6191180b242c1da1437f0f3b277f1"
+
+[site]
+bucket = "dist"
