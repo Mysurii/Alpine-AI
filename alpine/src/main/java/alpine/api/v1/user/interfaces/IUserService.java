@@ -1,6 +1,6 @@
-package alpine.alpine.user.interfaces;
+package alpine.api.v1.user.interfaces;
 
-import alpine.alpine.user.User;
+import alpine.api.v1.user.User;
 
 import java.util.List;
 import java.util.Optional;

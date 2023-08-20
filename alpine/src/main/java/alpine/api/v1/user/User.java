@@ -1,4 +1,4 @@
-package alpine.alpine.user;
+package alpine.api.v1.user;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -19,7 +19,7 @@ public class User {
     @Column(unique = true)
     private String email;
     private String password;
-    private Role role;
+    private Role role = Role.USER;
     private Boolean verified = false;
 
 

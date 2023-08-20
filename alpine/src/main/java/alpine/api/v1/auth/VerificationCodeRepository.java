@@ -1,6 +1,6 @@
-package alpine.alpine.repositories;
+package alpine.api.v1.auth;
 
-import alpine.alpine.user.VerificationCode;
+import alpine.api.v1.user.VerificationCode;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface VerificationCodeRepository extends JpaRepository<VerificationCode, Long> {

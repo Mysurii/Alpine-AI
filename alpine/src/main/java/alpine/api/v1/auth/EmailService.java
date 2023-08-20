@@ -1,4 +1,4 @@
-package alpine.alpine.services;
+package alpine.api.v1.auth;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

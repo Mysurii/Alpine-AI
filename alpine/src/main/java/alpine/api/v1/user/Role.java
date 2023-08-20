@@ -1,4 +1,4 @@
-package alpine.alpine.user;
+package alpine.api.v1.user;
 
 public enum Role {
     USER,

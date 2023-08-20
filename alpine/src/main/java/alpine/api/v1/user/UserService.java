@@ -1,6 +1,6 @@
-package alpine.alpine.user;
+package alpine.api.v1.user;
 
-import alpine.alpine.user.interfaces.IUserService;
+import alpine.api.v1.user.interfaces.IUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -16,11 +16,11 @@ public class UserService implements IUserService {
 
     @Override
     public List<User> getUsers() {
-        return null;
+        return userRepository.findAll();
     }
 
     @Override
     public Optional<User> findByEmail(String email) {
-        return Optional.empty();
+        return userRepository.findByEmail(email);
     }
 }

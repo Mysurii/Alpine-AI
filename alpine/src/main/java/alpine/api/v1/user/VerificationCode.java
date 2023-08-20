@@ -1,6 +1,5 @@
-package alpine.alpine.user;
+package alpine.api.v1.user;
 
-import alpine.alpine.user.User;
 import jakarta.persistence.*;
 
 import java.util.Date;
