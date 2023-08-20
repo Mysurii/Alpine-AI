@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class AuthServiceImpl implements AuthService {
     private final UserService userService;
+    private final VerificationCodeRepository verificationCodeRepository;
     private final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
     @Override
@@ -27,6 +28,11 @@ public class AuthServiceImpl implements AuthService {
         return createTokens();
 
 
+    }
+
+    public void saveVerificationCode(String code, User user) {
+        var verificationCode = new VerificationCode(code, user);
+        verificationCodeRepository.save(verificationCode);
     }
 
     private TokensDTO createTokens() {

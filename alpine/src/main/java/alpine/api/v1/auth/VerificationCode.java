@@ -21,7 +21,7 @@ public class VerificationCode {
     private String code;
     private Date expirationDate;
 
-    @OneToOne(mappedBy = "verificationCode")
+    @OneToOne(targetEntity = User.class, fetch=FetchType.LAZY)
     private User user;
 
     public VerificationCode(String code, User user) {
