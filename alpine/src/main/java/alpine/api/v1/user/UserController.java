@@ -1,12 +1,12 @@
 package alpine.api.v1.user;
 
+import alpine.common.exceptions.BadRequestException;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.HttpClientErrorException.*;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @RestController()
@@ -14,11 +14,10 @@ import java.util.Optional;
 @AllArgsConstructor
 public class UserController {
 
-    private final UserService userService;
+    private final UserServiceImpl userService;
 
 
-
-    @GetMapping()
+    @GetMapping
     public List<User> getAllUsers() {
         return userService.getUsers();
     }
@@ -27,4 +26,12 @@ public class UserController {
     public Optional<User> getUserById(@PathVariable String email) {
         return userService.findByEmail(email);
     }
+
+    @PutMapping("/{id}")
+    public User updateUser(@PathVariable Long id ,@RequestBody User user) {
+        if (!Objects.equals(id, user.getId())) throw new BadRequestException("Path id does not equal userId");
+        return userService.createUser(user);
+    }
+
+
 }
