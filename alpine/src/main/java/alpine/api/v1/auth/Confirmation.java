@@ -5,29 +5,35 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.annotation.CreatedDate;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.UUID;
 
+@NoArgsConstructor
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor
-public class VerificationCode {
+@Table(name = "confirmations")
+public class Confirmation {
     private static final int EXPIRATION_TIME_IN_MINUTES = 15;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String code;
+    private String token;
+    @Temporal(TemporalType.TIMESTAMP)
+    @CreatedDate
     private Date expirationDate;
 
-    @OneToOne(targetEntity = User.class, fetch=FetchType.LAZY)
+    @OneToOne(targetEntity = User.class, fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    public VerificationCode(String code, User user) {
-        this.code = code;
+    public Confirmation(User user) {
         this.user = user;
         this.expirationDate = this.getTokenExpirationDate();
+        this.token = UUID.randomUUID().toString();
     }
 
     private Date getTokenExpirationDate() {

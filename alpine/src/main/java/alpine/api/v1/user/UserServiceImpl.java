@@ -1,5 +1,6 @@
 package alpine.api.v1.user;
 
+import alpine.api.v1.user.exceptions.UserAlreadyExistsException;
 import alpine.api.v1.user.interfaces.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -23,11 +24,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Optional<User> findByEmail(String email) {
-        return userRepository.findByEmail(email);
+        return userRepository.findByEmailIgnoreCase(email);
     }
 
     @Override
     public User createUser(User user) {
+        if (userRepository.existsByEmail(user.getEmail()))
+            throw new UserAlreadyExistsException("User already exists");
+        user.setVerified(false); // to be sure that new user is not verified already
         user.setPassword(encoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
