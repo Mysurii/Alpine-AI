@@ -1,0 +1,17 @@
+spring:
+  config:
+    import:
+      optional:secrets.yml
+  jpa:
+    hibernate.ddl-auto: update
+    generate-ddl: true
+    show-sql: true
+
+####### Email Properties ######
+##smtp mail properties
+#spring.mail.host=smtp.gmail.com
+#spring.mail.port=587
+#spring.mail.username=example@gmail.com
+#spring.mail.password=gmail_app_password
+#spring.mail.properties.mail.smtp.auth=true
+#spring.mail.properties.mail.smtp.starttls.enable=true

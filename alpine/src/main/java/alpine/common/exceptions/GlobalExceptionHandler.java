@@ -14,8 +14,8 @@ public class GlobalExceptionHandler {
     @ResponseBody
     public ResponseEntity<HttpResponse> handleBadRequestException(BadRequestException ex) {
         return ResponseEntity.badRequest().body(HttpResponse.builder()
-                        .message(ex.getMessage())
-                        .status(HttpStatus.BAD_REQUEST)
+                .message(ex.getMessage())
+                .status(HttpStatus.BAD_REQUEST)
                 .build());
     }
 }
