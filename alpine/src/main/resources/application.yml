@@ -2,16 +2,32 @@ spring:
   config:
     import:
       optional:secrets.yml
+  datasource:
+    driver-class-name: ${DRIVER_CLASS_NAME}
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
   jpa:
     hibernate.ddl-auto: update
     generate-ddl: true
     show-sql: true
-
-####### Email Properties ######
-##smtp mail properties
-#spring.mail.host=smtp.gmail.com
-#spring.mail.port=587
-#spring.mail.username=example@gmail.com
-#spring.mail.password=gmail_app_password
-#spring.mail.properties.mail.smtp.auth=true
-#spring.mail.properties.mail.smtp.starttls.enable=true
+  mail:
+    host: ${EMAIL_HOST}
+    port: ${EMAIL_PORT}
+    username: ${EMAIL_ID}
+    password: ${EMAIL_PASSWORD}
+    default-encoding: utf-8
+    properties:
+      mail:
+        mime:
+          charset: UTF
+        smtp:
+          writetimeout: 10000
+          connectiontimeout: 10000
+          timeout: 10000
+          auth: true
+          starttls:
+            enable: true
+            required: true
+    verify:
+      host: ${VERIFY_EMAIL_HOST}
