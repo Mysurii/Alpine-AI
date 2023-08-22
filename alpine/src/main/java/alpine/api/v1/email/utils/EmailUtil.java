@@ -2,7 +2,7 @@ package alpine.api.v1.email.utils;
 
 public class EmailUtil {
     public static String getUrl(String host, String uri) {
-        return String.format("%s/api/%s", host, uri);
+        return String.format("\n\n%s/api/v1/%s\n\n", host, uri);
     }
 
     public static String getHeader(String name) {

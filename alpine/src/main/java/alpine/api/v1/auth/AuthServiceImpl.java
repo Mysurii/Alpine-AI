@@ -6,6 +6,7 @@ import alpine.api.v1.auth.interfaces.AuthService;
 import alpine.api.v1.email.Email;
 import alpine.api.v1.email.interfaces.EmailService;
 import alpine.api.v1.user.User;
+import alpine.api.v1.user.UserRepository;
 import alpine.api.v1.user.interfaces.UserService;
 import alpine.common.exceptions.BadRequestException;
 import lombok.AllArgsConstructor;
@@ -17,8 +18,9 @@ import java.util.Optional;
 @Service("authService")
 @AllArgsConstructor
 public class AuthServiceImpl implements AuthService {
-    private final UserService userService;
     private final ConfirmationRepository confirmationRepository;
+    private final UserRepository userRepository;
+    private final UserService userService;
     private final EmailService emailService;
 
     @Override
@@ -37,25 +39,16 @@ public class AuthServiceImpl implements AuthService {
                 .to(user.getEmail())
                 .name(user.getName())
                 .subject("New User Account Verification")
-                .body(getEmailMessage(user.getName()))
-                .uri("?token="+confirmation.getToken())
+                .body("Your account has been created. Please click the link below to verify your account.")
+                .uri("auth/verify?token="+confirmation.getToken())
                 .build();
 
         emailService.sendSimpleMailMessage(email);
         return true;
     }
 
-    public void saveVerificationCode(String code, User user) {
-        var verificationCode = new Confirmation(user);
-        confirmationRepository.save(verificationCode);
-    }
-
     private TokensDTO createTokens() {
         return new TokensDTO("Hello", "World");
-    }
-
-    public Optional<Confirmation> findVerificationCode(String code) {
-        return confirmationRepository.findByToken(code);
     }
 
     @Override
@@ -80,13 +73,7 @@ public class AuthServiceImpl implements AuthService {
         }
 
         user.setVerified(true);
-        userService.createUser(user);
+        userRepository.save(user);
         return true;
-    }
-
-    private String getEmailMessage(String name) {
-        return "Hello " +
-                name +
-                "\n\nYour account has been created. Please click the link below to verify your account. \n\n";
     }
 }
