@@ -37,3 +37,10 @@ spring:
             required: true
     verify:
       host: ${VERIFY_EMAIL_HOST}
+application:
+  security:
+    jwt:
+      secret-key: ${PRIVATE_KEY}
+      expiration: ${ACCESS_TOKEN_EXPIRATION}
+      refresh-token:
+        expiration: ${REFRESH_TOKEN_EXPIRATION}

@@ -1,4 +1,4 @@
-package alpine.api.v1.auth.interfaces;
+package alpine.api.v1.auth.services;
 
 import alpine.api.v1.auth.dto.SignUpDTO;
 

@@ -1,8 +1,10 @@
-package alpine.api.v1.auth;
+package alpine.api.v1.auth.services.implementation;
 
+import alpine.api.v1.auth.Confirmation;
+import alpine.api.v1.auth.ConfirmationRepository;
 import alpine.api.v1.auth.dto.SignUpDTO;
 import alpine.api.v1.auth.dto.TokensDTO;
-import alpine.api.v1.auth.interfaces.AuthService;
+import alpine.api.v1.auth.services.AuthService;
 import alpine.api.v1.email.Email;
 import alpine.api.v1.email.interfaces.EmailService;
 import alpine.api.v1.user.User;

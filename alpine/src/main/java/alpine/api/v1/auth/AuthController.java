@@ -1,6 +1,7 @@
 package alpine.api.v1.auth;
 
 import alpine.api.v1.auth.dto.SignUpDTO;
+import alpine.api.v1.auth.services.implementation.AuthServiceImpl;
 import alpine.common.dto.HttpResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
