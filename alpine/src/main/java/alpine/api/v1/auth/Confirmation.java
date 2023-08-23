@@ -2,6 +2,7 @@ package alpine.api.v1.auth;
 
 import alpine.api.v1.user.User;
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,8 +14,7 @@ import java.util.UUID;
 
 @NoArgsConstructor
 @Entity
-@Getter
-@Setter
+@Data
 @Table(name = "confirmations")
 public class Confirmation {
     private static final int EXPIRATION_TIME_IN_MINUTES = 15;
