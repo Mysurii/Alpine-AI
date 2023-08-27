@@ -2,6 +2,7 @@ package alpine.api.v1.auth.services.implementation;
 
 import alpine.api.v1.auth.Confirmation;
 import alpine.api.v1.auth.ConfirmationRepository;
+import alpine.api.v1.auth.dto.SignInDTO;
 import alpine.api.v1.auth.dto.SignUpDTO;
 import alpine.api.v1.auth.dto.TokensDTO;
 import alpine.api.v1.auth.services.AuthService;
@@ -11,7 +12,10 @@ import alpine.api.v1.user.User;
 import alpine.api.v1.user.UserRepository;
 import alpine.api.v1.user.interfaces.UserService;
 import alpine.common.exceptions.BadRequestException;
+import alpine.common.exceptions.NotFoundException;
 import lombok.AllArgsConstructor;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Service;
 
 import java.util.Calendar;
@@ -24,6 +28,9 @@ public class AuthServiceImpl implements AuthService {
     private final UserRepository userRepository;
     private final UserService userService;
     private final EmailService emailService;
+    private final JwtServiceImpl jwtService;
+    private final AuthenticationManager authenticationManager;
+
 
     @Override
     public boolean register(SignUpDTO signUpDTO) {
@@ -77,5 +84,17 @@ public class AuthServiceImpl implements AuthService {
         user.setVerified(true);
         userRepository.save(user);
         return true;
+    }
+
+    public String login(SignInDTO signInDTO) {
+        authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(signInDTO.email(), signInDTO.password())
+        );
+        // user is authenticated
+        var user = userService.findByEmail(signInDTO.email()).orElseThrow(() -> new NotFoundException("User not found"));
+
+        if (!user.getVerified()) throw new BadRequestException("User not verified.");
+
+        return jwtService.generateToken(user);
     }
 }

@@ -1,5 +1,6 @@
 package alpine.api.v1.auth;
 
+import alpine.api.v1.auth.dto.SignInDTO;
 import alpine.api.v1.auth.dto.SignUpDTO;
 import alpine.api.v1.auth.services.implementation.AuthServiceImpl;
 import alpine.common.dto.HttpResponse;
@@ -8,6 +9,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
@@ -37,6 +40,20 @@ public class AuthController {
                 HttpResponse.builder()
                         .message("User verified. You can now login on the website.")
                         .status(HttpStatus.OK)
+                        .build());
+    }
+
+
+    @GetMapping("/signin")
+    public ResponseEntity<HttpResponse> signIn(@RequestBody SignInDTO signInDTO) {
+
+        String token = authService.login(signInDTO);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(
+                HttpResponse.builder()
+                        .message("Succesfully logged in")
+                        .status(HttpStatus.OK)
+                        .data(Map.of("token", token))
                         .build());
     }
 

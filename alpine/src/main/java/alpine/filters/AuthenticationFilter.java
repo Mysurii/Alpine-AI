@@ -1,8 +1,8 @@
 package alpine.filters;
 
-import alpine.api.v1.auth.services.implementation.JwtServiceimpl;
+import alpine.api.v1.auth.services.implementation.JwtServiceImpl;
 import alpine.api.v1.user.User;
-import alpine.api.v1.user.interfaces.UserService;
+import alpine.api.v1.user.UserServiceImpl;
 import alpine.common.exceptions.NotFoundException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -22,8 +22,8 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class AuthenticationFilter extends OncePerRequestFilter {
 
-    private final JwtServiceimpl jwtService;
-    private final UserService userService;
+    private final JwtServiceImpl jwtService;
+    private final UserServiceImpl userService;
 
     @Override
     protected void doFilterInternal(
