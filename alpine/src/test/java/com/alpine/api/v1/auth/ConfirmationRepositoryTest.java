@@ -25,12 +25,9 @@ class ConfirmationRepositoryTest {
         user.setName("John Doe");
         user.setEmail("john@doe.com");
         user.setPassword("Password");
-
-
+        userRepository.save(user);
 
         Confirmation confirmation = new Confirmation(user);
-
-        userRepository.save(user);
         confirmationRepository.save(confirmation);
 
         //when
