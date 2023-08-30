@@ -2,6 +2,7 @@ package com.alpine.api.v1.auth;
 
 import com.alpine.api.v1.user.User;
 import com.alpine.api.v1.user.UserRepository;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -17,6 +18,12 @@ class ConfirmationRepositoryTest {
     private ConfirmationRepository confirmationRepository;
     @Autowired
     private UserRepository userRepository;
+
+    @AfterEach
+    void tearDown() {
+        confirmationRepository.deleteAll();
+        userRepository.deleteAll();
+    }
 
     @Test
     void itShouldFindConfirmationByCode() {
