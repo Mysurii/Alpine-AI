@@ -4,13 +4,13 @@ import com.alpine.api.v1.user.User;
 import com.alpine.api.v1.user.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import java.util.Optional;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-@SpringBootTest
+@DataJpaTest
 class ConfirmationRepositoryTest {
 
     @Autowired
