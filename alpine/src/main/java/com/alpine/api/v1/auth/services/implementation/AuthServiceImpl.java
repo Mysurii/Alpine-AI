@@ -25,7 +25,6 @@ import java.util.Optional;
 @AllArgsConstructor
 public class AuthServiceImpl implements AuthService {
     private final ConfirmationRepository confirmationRepository;
-    private final UserRepository userRepository;
     private final UserService userService;
     private final EmailService emailService;
     private final JwtServiceImpl jwtService;
@@ -34,10 +33,7 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public boolean register(SignUpDTO signUpDTO) {
-        var user = new User();
-        user.setName(signUpDTO.name());
-        user.setEmail(signUpDTO.email());
-        user.setPassword(signUpDTO.password());
+        var user = SignUpDTO.mapToUser(signUpDTO);
         userService.createUser(user);
 
         Confirmation confirmation = new Confirmation(user);
@@ -56,18 +52,9 @@ public class AuthServiceImpl implements AuthService {
         return true;
     }
 
-    private TokensDTO createTokens() {
-        return new TokensDTO("Hello", "World");
-    }
-
     @Override
     public boolean validateToken(String token) throws BadRequestException {
-        Optional<Confirmation> foundCode = confirmationRepository.findByToken(token);
-        if (foundCode.isEmpty()) throw new BadRequestException("Invalid verification code");
-
-
-
-        var theToken = foundCode.get();
+       Confirmation theToken = confirmationRepository.findByToken(token).orElseThrow(() -> new NotFoundException("Token not found"));
 
         // Delete token even if its expired.
         confirmationRepository.delete(theToken);
@@ -82,7 +69,7 @@ public class AuthServiceImpl implements AuthService {
         }
 
         user.setVerified(true);
-        userRepository.save(user);
+        userService.updateUser(user.getId(), user);
         return true;
     }
 
